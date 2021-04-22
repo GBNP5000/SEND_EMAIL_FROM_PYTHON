@@ -29,26 +29,27 @@ msg = """
      <html>
     <head>
       <style>
-        body>img {
-          alt:"" ;
-          width:"500";
-          height:"600";
-        }
+      
       </style>
     </head>
       <body>
-          <h1>  </h1>
+          <h1><b>HI</b> </h1>
           <br><br>
-          
-          
+          <p>this a test message</p>          
       </body>
 </html>
     
 """
-emal = []
-emal.append("@umich.edu")
-emal.append("@gmail.com")
+emal1 = []
+emal1.append("@gmail.com")
+emal1.append("@gmail.com")
 
-fr = ""
+TOT = len(emal1)
+fr = "@gmail.com"
 pwd = ""
-sndemail(fr, emal, "this is from python", msg, pwd)
+
+print("Total mail(s) "+str(TOT)+"\n")
+for i, emal in enumerate(emal1):
+    print("mail "+str(i+1) + "  sending")
+    sndemail(fr, emal, "this is from python", msg, pwd)
+    print("mail "+str(i+1)+"/"+str(TOT) + "  completed")
