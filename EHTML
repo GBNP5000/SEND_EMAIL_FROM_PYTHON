@@ -1,0 +1,54 @@
+import smtplib as sm
+#from email.message import EmailMessage as emsg
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+
+def sndemail(sndr, resvr, sub, msg, pwd):
+    try:
+        srvr = sm.SMTP("smtp.gmail.com", 587)
+        srvr.starttls()
+        srvr.login(sndr, pwd)
+
+        msgb = MIMEMultipart("alternative")
+
+        msgb["Subject"] = sub
+        msgb["from"] = sndr
+
+        text = MIMEText(msg, "html")
+
+        msgb.attach(text)
+
+        srvr.sendmail(sndr, resvr, msgb.as_string())
+        print("email sent to " + str(resvr))
+    except Exception as e:
+        print(e)
+
+
+msg = """
+     <html>
+    <head>
+      <style>
+        body>img {
+          alt:"" ;
+          width:"500";
+          height:"600";
+        }
+      </style>
+    </head>
+      <body>
+          <h1>  </h1>
+          <br><br>
+          
+          
+      </body>
+</html>
+    
+"""
+emal = []
+emal.append("@umich.edu")
+emal.append("@gmail.com")
+
+fr = ""
+pwd = ""
+sndemail(fr, emal, "this is from python", msg, pwd)
